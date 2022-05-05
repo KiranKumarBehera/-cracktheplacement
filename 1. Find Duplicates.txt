@@ -1,4 +1,4 @@
-Find Duplicates in an array
+1) Find Duplicates in an array
 
 class Solution {   //Two pointer approach for better time complexity
 public:
