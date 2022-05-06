@@ -1,0 +1,25 @@
+8) Two sum
+Brute: two for loops to check wheather each sums up to the target or not.
+optimal: Take one loop and use a fumction of map i.e map.find(x) to reduce the time complexity.
+The brute force and optimal are almost similar though. 
+
+class Solution {
+public:
+    vector<int> twoSum(vector<int>& nums, int target) {
+        map<int, int>mp;
+        vector<int>ans(2);
+        for(int i = 0; i < nums.size(); i++){
+            
+            int rem = target - nums[i];
+            
+            if(mp.find(rem) != mp.end()){
+                ans[0] = i;
+                ans[1] = mp[rem];
+                return ans;
+            }
+            mp[nums[i]] = i;
+           
+        }
+        return ans;
+    }
+};
