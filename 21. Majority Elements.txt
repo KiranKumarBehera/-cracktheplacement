@@ -1,6 +1,6 @@
 21) Majority Elements
 
-class Solution {
+class Solution {   //Moores Voting Algo
 public:
     int majorityElement(vector<int>& nums) {
         int cnt=0,ele=0;
