@@ -1,0 +1,75 @@
+22) Reverse Pair
+
+class Solution {
+public:
+    
+    void merge(int l,int mid,int r,vector<int>&nums,int &cnt)
+    {
+        vector<int>tmp(r-l+1,0);
+        int i=l,j=mid+1;
+        int cc=0;
+        int k=0;
+        
+        while(i<=mid && j<=r)
+        {
+            while(i<=mid && nums[i]<=2ll*nums[j])   // find the smallest ith index for which nums[i]>2*nums[j]
+			
+            {
+               i++;
+            }
+            cnt+=mid-i+1;    // after this ith index all elements from ith index till mid will satisfiy this condition
+           j++;  // now find smallest ith index for next j
+        }
+        
+        
+        i=l,j=mid+1;
+        while(i<=mid && j<=r)
+        {
+          if(nums[i]<=nums[j])
+          {
+              
+              tmp[k++]=nums[i++];
+          }
+         else{
+            
+               
+                tmp[k++]=nums[j++];
+             }
+        }
+        while(i<=mid)
+        {
+            cnt+=cc;
+            tmp[k++]=nums[i++];
+            
+        }
+        while(j<=r)
+        {
+            
+            tmp[k++]=nums[j++];
+        }
+        k=0;
+        for(int i=l;i<=r;i++)
+        {
+            nums[i]=tmp[k++];
+        }
+        return;
+    }
+    
+    void mergesort(int l, int r,vector<int>&nums,int &cnt)
+    {
+        if(l>=r)
+            return;
+        int mid=l+(r-l)/2;
+        mergesort(l,mid,nums,cnt);
+        mergesort(mid+1,r,nums,cnt);
+        merge(l,mid,r,nums,cnt);
+        return;
+    }
+    
+    int reversePairs(vector<int>& nums) {
+        int n=nums.size();
+        int cnt=0;
+        mergesort(0,n-1,nums,cnt);
+        return cnt;
+    }
+};
