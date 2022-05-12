@@ -7,7 +7,6 @@ public:
     {
         vector<int>tmp(r-l+1,0);
         int i=l,j=mid+1;
-        int cc=0;
         int k=0;
         
         while(i<=mid && j<=r)
@@ -31,14 +30,11 @@ public:
               tmp[k++]=nums[i++];
           }
          else{
-            
-               
                 tmp[k++]=nums[j++];
              }
         }
         while(i<=mid)
         {
-            cnt+=cc;
             tmp[k++]=nums[i++];
             
         }
