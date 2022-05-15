@@ -1,0 +1,33 @@
+24) Game of life
+
+class Solution {
+public:
+    void gameOfLife(vector<vector<int>>& board) {
+        vector<int> dx = {-1,1, 0, 0,-1, 1, -1,1};
+        vector<int> dy = {0, 0, -1, 1,-1,1,1,-1};
+        vector<vector<int>> copy = board;
+        for(int i=0;i<board.size();i++)
+            for(int j=0;j<board[0].size();j++){
+                int alive = 0;
+                int dead = 0;
+                for(int k=0;k<8;k++){
+                    int I = i+dx[k];
+                    int J = j+dy[k];
+                    if(I<0 || I>= board.size() || J<0 || J>=board[0].size())
+                        continue;
+                    if(copy[I][J]==1)
+                        alive++;
+                    else
+                        dead++;
+                }
+                if(copy[i][j]==1){
+                    if(alive < 2 or alive >3)
+                        board[i][j] = 0;
+                 
+                } else{
+                    if(alive == 3)
+                        board[i][j] = 1;
+                }
+            }
+    }
+};
