@@ -1,0 +1,26 @@
+25) Max value of equation
+
+concept is to find max of yi+yj+|xi-xj| and xi<xj and i<j, so by rearranging this we get,
+|xj+yj+yi-xi|. Here the part which is changing is yi-xi. Therefore we keep this in a
+priority queue and the xi also.
+Then we keep popping out from the queue if points[i][0]-p.top().second>k coz the topic of
+discussion is only if points[i][0]-p.top().second<=k. Here we then find the max between
+ans and xj+yj+yi-xi where yi-xi is already there in the queue's first part of pair,
+and then store it in ans. And as the first loop goes on, we keep on pushing the pairs
+in the priority queue. i.e, yi-xi and xi.
+
+class Solution {
+public:
+    int findMaxValueOfEquation(vector<vector<int>>& points, int k) {
+        priority_queue<pair<int,int>> p;
+        int ans=INT_MIN;
+        for(int i=0;i<points.size();i++){
+            while((!p.empty())&&(points[i][0]-p.top().second>k)) p.pop();
+            if(!p.empty()){
+                ans=max(ans,points[i][0]+points[i][1]+p.top().first);
+            }
+            p.push({points[i][1]-points[i][0],points[i][0]});
+        }
+        return ans;
+    }
+};
